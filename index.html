@@ -3,247 +3,1012 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tostaduría Orocafé, El Paraíso</title>
+  <title>Tostaduría Orocafé — El Paraíso, Honduras</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --espresso:   #2c1a0e;
+      --mocha:      #4a2f1a;
+      --caramel:    #c8622a;
+      --caramel-lt: #e07a40;
+      --latte:      #f5ede3;
+      --cream:      #fdf8f3;
+      --text:       #1e1208;
+      --muted:      #7a6050;
+      --border:     #e8d8c8;
+      --white:      #ffffff;
+      --radius-sm:  6px;
+      --radius:     12px;
+      --radius-lg:  20px;
+      --shadow-sm:  0 1px 3px rgba(44,26,14,.08);
+      --shadow:     0 4px 16px rgba(44,26,14,.12);
+      --shadow-lg:  0 12px 40px rgba(44,26,14,.16);
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fffaf5;
-      color: #2e2e2e;
+      font-family: 'Poppins', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1rem;
     }
-    header {
-      background: #3e2c20;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(44,26,14,.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background: #59412d;
-      padding: 0.5rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 2rem;
-    }
-    h2 {
-      color: #3e2c20;
-    }
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-    .image-grid img {
-      max-width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
+
+    .navbar-inner {
+      max-width: 1200px;
       margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      gap: 1rem;
     }
-    .responsive-img {
-        max-width: 100%;
-        max-height: 250px;
-        object-fit: cover;
-        border-radius: 10px;
-        display: block;
-        margin: 0 auto;
-      }
-    footer {
-      background: #3e2c20;
-      color: white;
+
+    .navbar-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: -.3px;
+    }
+    .navbar-brand span { color: var(--caramel-lt); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: .1rem;
+    }
+    .nav-links a {
+      display: block;
+      padding: .4rem .7rem;
+      color: rgba(255,255,255,.78);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,.1);
+    }
+
+    .btn-nav {
+      background: var(--caramel);
+      color: var(--white) !important;
+      padding: .45rem 1rem !important;
+      border-radius: var(--radius-sm) !important;
+      font-weight: 600 !important;
+      font-size: .78rem !important;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .btn-nav:hover {
+      background: var(--caramel-lt) !important;
+      box-shadow: 0 4px 12px rgba(200,98,42,.4) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* ── HAMBURGER ───────────────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition);
+    }
+    .hamburger:hover { background: rgba(255,255,255,.1); }
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform var(--transition), opacity var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE DRAWER ───────────────────────────────────── */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      inset: 60px 0 0 0;
+      background: rgba(28,14,6,.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 199;
+      padding: 2rem 1.5rem;
+      flex-direction: column;
+      gap: .25rem;
+      overflow-y: auto;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .mobile-drawer.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-drawer a {
+      display: block;
+      padding: .85rem 1rem;
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      border-radius: var(--radius);
+      transition: background var(--transition), color var(--transition);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .mobile-drawer a:hover { background: rgba(255,255,255,.08); color: var(--white); }
+    .mobile-drawer .btn-drawer {
+      margin-top: 1rem;
+      background: var(--caramel);
+      color: var(--white);
       text-align: center;
+      padding: .9rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: .95rem;
+      border: none;
+      transition: background var(--transition);
+    }
+    .mobile-drawer .btn-drawer:hover { background: var(--caramel-lt); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--espresso) 0%, var(--mocha) 60%, #6b3d1e 100%);
+      color: var(--white);
+      padding: 6rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 700px; margin: 0 auto; position: relative; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,98,42,.25);
+      border: 1px solid rgba(200,98,42,.5);
+      color: var(--caramel-lt);
+      font-size: .75rem;
+      font-weight: 600;
+      padding: .3rem .9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -.5px;
+    }
+    .hero h1 span { color: var(--caramel-lt); }
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.72);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--caramel);
+      color: var(--white);
+      padding: .9rem 2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      box-shadow: 0 4px 20px rgba(200,98,42,.45);
+    }
+    .hero-cta:hover {
+      background: var(--caramel-lt);
+      box-shadow: 0 8px 28px rgba(200,98,42,.55);
+      transform: translateY(-2px);
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────── */
+    .section { padding: 5rem 1.5rem; }
+    .section-alt { background: var(--latte); }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(200,98,42,.12);
+      color: var(--caramel);
+      font-size: .72rem;
+      font-weight: 600;
+      padding: .25rem .8rem;
+      border-radius: 100px;
+      margin-bottom: .75rem;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: .75rem;
+      letter-spacing: -.4px;
+    }
+    .section-header p {
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: .97rem;
+    }
+
+    /* ── HISTORIA ────────────────────────────────────────── */
+    .historia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .historia-grid { grid-template-columns: 1fr; } }
+
+    .historia-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .historia-img img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .historia-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 0 0 1px rgba(44,26,14,.1);
+      pointer-events: none;
+    }
+
+    .historia-content { display: flex; flex-direction: column; gap: 1.25rem; }
+    .historia-content h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--espresso);
+      letter-spacing: -.4px;
+      line-height: 1.2;
+    }
+    .historia-content p { color: var(--muted); font-size: .97rem; line-height: 1.75; }
+
+    .historia-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: .5rem;
+    }
+    .stat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 1rem;
-      margin-top: 2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--caramel);
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+    .stat-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
+
+    /* ── CARDS DE SERVICIOS ──────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+    }
+    .service-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+      border-color: var(--caramel);
+    }
+    .service-icon { font-size: 1.8rem; margin-bottom: .75rem; }
+    .service-card h3 { font-size: 1rem; font-weight: 600; color: var(--espresso); margin-bottom: .4rem; }
+    .service-card p { font-size: .875rem; color: var(--muted); }
+
+    /* ── IMAGEN GRID ─────────────────────────────────────── */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .img-grid img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      display: block;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .img-grid img:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+
+    /* ── 2 COLUMNAS ──────────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ── LISTAS ──────────────────────────────────────────── */
+    .styled-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+    .styled-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      font-size: .95rem;
+      color: var(--muted);
+    }
+    .styled-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      margin-top: .45em;
+      border-radius: 50%;
+      background: var(--caramel);
+    }
+
+    .numbered-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+      counter-reset: step;
+    }
+    .numbered-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: .95rem;
+      color: var(--muted);
+      counter-increment: step;
+    }
+    .numbered-list li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--caramel);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── VARIEDADES ──────────────────────────────────────── */
+    .variety-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .variety-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .variety-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .variety-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .variety-card-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .variety-card-body h3 { font-size: 1.05rem; font-weight: 600; color: var(--espresso); margin-bottom: .35rem; }
+    .variety-card-body p { font-size: .875rem; color: var(--muted); }
+
+    /* ── CICLO DE VIDA ───────────────────────────────────── */
+    .lifecycle-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .step:hover { border-color: var(--caramel); box-shadow: var(--shadow-sm); }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--caramel), var(--caramel-lt));
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto .75rem;
+    }
+    .step h4 { font-size: .85rem; font-weight: 600; color: var(--espresso); margin-bottom: .25rem; }
+    .step p { font-size: .77rem; color: var(--muted); }
+
+    /* ── PREPARACIÓN ─────────────────────────────────────── */
+    .prep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .prep-grid { grid-template-columns: 1fr; } }
+
+    /* ── UBICACIÓN ───────────────────────────────────────── */
+    .location-address {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .location-pin { font-size: 1.5rem; flex-shrink: 0; }
+    .location-address p { font-size: .95rem; color: var(--muted); line-height: 1.7; }
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) { .map-grid { grid-template-columns: 1fr; } }
+    .map-box {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .map-box h4 {
+      background: var(--espresso);
+      color: var(--white);
+      font-size: .82rem;
+      font-weight: 600;
+      padding: .6rem 1rem;
+    }
+    .map-box iframe, .map-box img { display: block; width: 100%; }
+    .map-box img { height: 340px; object-fit: contain; background: var(--latte); }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--espresso);
+      color: rgba(255,255,255,.55);
+      padding: 3rem 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .footer-inner { grid-template-columns: 1fr; text-align: center; } }
+    .footer-brand {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .35rem;
+    }
+    .footer-brand span { color: var(--caramel-lt); }
+    .footer-copy { font-size: .82rem; }
+    .footer-links { display: flex; gap: 1rem; }
+    .footer-links a {
+      color: rgba(255,255,255,.5);
+      text-decoration: none;
+      font-size: .82rem;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ── BOTÓN LATERAL ENCUENTRANOS ─────────────────────── */
+    .find-us-float {
+      position: fixed;
+      right: -2px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 300;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--caramel);
+      color: var(--white);
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 1.1rem .6rem;
+      border-radius: var(--radius) 0 0 var(--radius);
+      box-shadow: -3px 0 16px rgba(44,26,14,.18);
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .find-us-float:hover {
+      background: var(--caramel-lt);
+      box-shadow: -5px 0 22px rgba(44,26,14,.25);
+      transform: translateY(-50%) translateX(-3px);
+    }
+    .find-us-float .pin-icon {
+      writing-mode: horizontal-tb;
+      font-size: .95rem;
+    }
+
+    /* ── WHATSAPP FLOTANTE ───────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      background: #25d366;
+      color: var(--white);
+      text-decoration: none;
+      padding: .7rem 1.1rem .7rem .85rem;
+      border-radius: 100px;
+      font-size: .85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+      max-width: 200px;
+    }
+    .wa-float:hover {
+      background: #1ebe5d;
+      box-shadow: 0 8px 28px rgba(37,211,102,.55);
+      transform: translateY(-2px);
+    }
+    .wa-float svg { flex-shrink: 0; width: 22px; height: 22px; fill: var(--white); }
+    .wa-label { white-space: nowrap; }
+
+    @media (max-width: 480px) {
+      .hero { padding: 4rem 1rem 3.5rem; }
+      .section { padding: 3.5rem 1rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .lifecycle-steps { grid-template-columns: repeat(3, 1fr); }
+      .wa-float { padding: .7rem; border-radius: 50%; }
+      .wa-label { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Tostaduría Orocafé</h1>
-    <p>Pasión por el café, desde la finca hasta tu taza</p>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="navbar-brand">Orocafé <span>☕</span></a>
 
-    <div style="margin-top: 1rem;">
-  <a href="https://script.google.com/macros/s/AKfycbwpWdpiPAkUO4u-6Cegh_4rBHd6hEpJJD2LtRFF0Om1q8CnIN3Cp-U-VaHCFVRKVsgY/exec" target="_blank"
-     style="background-color: #d2691e; color: white; padding: 0.7rem 1.2rem; text-decoration: none; border-radius: 8px; font-weight: bold;">
-    Ingresar al Sistema
-  </a>
-</div>
+      <ul class="nav-links">
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#tipos">Variedades</a></li>
+        <li><a href="#vida">Ciclo de vida</a></li>
+        <li><a href="#preparacion">Preparación</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li>
+          <a href="https://script.google.com/macros/s/AKfycbwpWdpiPAkUO4u-6Cegh_4rBHd6hEpJJD2LtRFF0Om1q8CnIN3Cp-U-VaHCFVRKVsgY/exec"
+             target="_blank" class="btn-nav">Ingresar al sistema</a>
+        </li>
+      </ul>
 
-    
-  </header>
-
-  <nav>
-    <a href="#servicios">Servicios</a>
-    <a href="#proceso">Proceso</a>
-    <a href="#tipos">Tipos de café</a>
-    <a href="#vida">Ciclo de vida</a>
-    <a href="#preparacion">Preparación</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#ubicacion">Donde encontrarnos</a>
-    
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <section id="servicios">
-    <h2>¿Qué ofrecemos?</h2>
-    <p>Ubicados en El Paraíso, Honduras, nos especializamos en el <strong>tostado industrial</strong> de café y su <strong>venta al por mayor y menor</strong>. Trabajamos con productores locales y garantizamos calidad desde el origen.</p>
-    <ul>
-      <li>Trillado</li>
-      <li>Tostado</li>
-      <li>Molido</li>
-      <li>Empacado</li>
-    </ul>
-    <div class="image-grid">
-      <img src="img/Tostador.jpg" alt="Tostado Industrial" class="responsive-img">
-      <img src="img/VentaCafe.jpeg" alt="Venta de café" class="responsive-img">
-    </div>
-  </section>
-
-  <section id="proceso">
-    <h2>Servicios</h2>
-    <p>Desde la recolección del grano hasta el tueste, el café vive un viaje mágico. Estas son algunas etapas clave:</p>
-    <ul>
-      <li>Despulpado y lavado</li>
-      <li>Secado al sol</li>
-      <li>Clasificación y selección</li>
-      <li>Tostado según perfil</li>
-    </ul>
-    <div class="image-grid">
-      <img src="img/Ciclo-vida.jpeg" alt="Proceso de café" class="responsive-img">
-      <img src="img/Finca.jpeg" alt="Finca de café" class="responsive-img">
-    </div>
-  </section>
-
-  <section id="tipos">
-    <h2>Tipos de café</h2>
-    <p>Conoce las principales variedades que cultivamos:</p>
-    <ul>
-      <li><strong>Arábica:</strong> delicado, floral y suave.</li>
-      <li><strong>Robusta:</strong> intenso y con más cafeína.</li>
-      <li><strong>Caturra:</strong> variedad arábica adaptada al clima local.</li>
-    </ul>
-    <div class="image-grid">
-      <img src="img/arabica.jpeg" alt="Arábica" class="responsive-img">
-      <img src="img/Parainema.jpeg" alt="Granos de café" class="responsive-img">
-      <img src="img/caturra.jpeg" alt="Granos de café" class="responsive-img">
-    </div>
-  </section>
-
-  <section id="vida">
-    <h2>Ciclo de vida del café</h2>
-    <p>El café requiere cuidado constante. El ciclo incluye:</p>
-    <ol>
-      <li>Germinación (1-2 meses)</li>
-      <li>Crecimiento vegetativo (4-6 meses)</li>
-      <li>Floración</li>
-      <li>Fructificación</li>
-      <li>Cosecha (9-12 meses después de floración)</li>
-    </ol>
-    <img src="img/CicloVida.jpeg" alt="Ciclo de vida del café" class="responsive-img">
-  </section>
-
-  <section id="preparacion">
-    <h2>Cómo preparar una buena taza de café</h2>
-    <p>Sigue estos pasos para disfrutar al máximo tu café:</p>
-    <ol>
-      <li>Usa agua caliente pero no hirviendo (92–96°C).</li>
-      <li>Muele tu café fresco antes de preparar.</li>
-      <li>La proporción ideal es 1:15 (1g café por 15g de agua).</li>
-      <li>Prueba métodos como prensa francesa, V60 o cafetera italiana.</li>
-    </ol>
-    <div class="image-grid">
-      <img src="img/preparacion.jpeg" alt="Preparación" class="responsive-img">
-      <img src="img/metodoPreparacion.jpeg" alt="Métodos de preparación" class="responsive-img">
-    </div>
-  </section>
-
- <section id="ubicacion" style="padding: 2rem 1rem; text-align: center; background-color: #f9f9f9;">
- 
-  <!-- DIRECCIÓN (VISIBLE SIEMPRE) -->
-  <div style="text-align: center; margin-bottom: 1.5rem;">
-    <h3 style="margin-bottom: 0.5rem;">📍 Dirección</h3>
-    <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
-      Barrio El Jazmín, calle principal pasando por el parque Ramón Ignacio (Plaza),
-      hasta llegar al final de dicha calle, media cuadra a la izquierda.
-    </p>
+  <!-- MOBILE DRAWER -->
+  <div class="mobile-drawer" id="drawer" role="dialog" aria-label="Menú de navegación">
+    <a href="#historia"    onclick="closeMenu()">Historia</a>
+    <a href="#servicios"   onclick="closeMenu()">Servicios</a>
+    <a href="#proceso"     onclick="closeMenu()">Proceso</a>
+    <a href="#tipos"       onclick="closeMenu()">Variedades</a>
+    <a href="#vida"        onclick="closeMenu()">Ciclo de vida</a>
+    <a href="#preparacion" onclick="closeMenu()">Preparación</a>
+    <a href="#ubicacion"   onclick="closeMenu()">Ubicación</a>
+    <a href="https://script.google.com/macros/s/AKfycbwpWdpiPAkUO4u-6Cegh_4rBHd6hEpJJD2LtRFF0Om1q8CnIN3Cp-U-VaHCFVRKVsgY/exec"
+       target="_blank" class="btn-drawer" onclick="closeMenu()">Ingresar al sistema →</a>
   </div>
 
-  <!-- MAPA + CROQUIS -->
-  <div style="
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  ">
-
-    <!-- MAPA -->
-    <div style="flex: 1 1 400px;">
-      <h4 style="text-align: center; margin-bottom: 0.5rem;">🗺️ Mapa</h4>
-      <iframe
-         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500.1000541865877!2d-86.55163110089808!3d13.855867467421284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6e1539a675b14f%3A0xa2217c58e41b998b!2zVG9zdGFkdXLDrWEgT3JvY2Fmw6k!5e0!3m2!1ses-419!2shn!4v1754518405116!5m2!1ses-419!2shn" 
-     width="100%"
-        height="350"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="hero-badge">El Paraíso, Honduras</span>
+      <h1>Tostaduría <span>Orocafé</span></h1>
+      <p>Pasión por el café, desde la finca hasta tu taza. Tostado artesanal, calidad de origen.</p>
+      <a href="#servicios" class="hero-cta">Conoce nuestros servicios →</a>
     </div>
+  </header>
 
-    <!-- CROQUIS -->
-    <div style="flex: 1 1 400px; text-align: center;">
-      <h4 style="margin-bottom: 0.5rem;">🧭 Croquis</h4>
-      <img
-        src="img/TostaduriaOroCafe.png"
-        alt="Croquis de ubicación"
-        style="width: 100%; height: 350px; object-fit: contain;"
-        loading="lazy"
-      >
+  <!-- HISTORIA -->
+  <section class="section" id="historia">
+    <div class="container">
+      <div class="historia-grid">
+        <div class="historia-img">
+          <img src="img/historia_tostaduria.jpg" alt="Historia de Tostaduría Orocafé" loading="lazy">
+        </div>
+        <div class="historia-content">
+          <span class="section-tag">Nuestra historia</span>
+          <h2>Arraigados en la tierra del mejor café</h2>
+          <p>
+            Nacimos en El Paraíso, Honduras, con la convicción de que el café hondureño merece brillar
+            con luz propia. Desde nuestros inicios trabajamos de la mano con agricultores locales,
+            aprendiendo cada matiz de la tierra y el grano.
+          </p>
+          <p>
+            Hoy combinamos métodos artesanales con equipos de tostado de precisión para entregar
+            un producto que honra su origen: café de alta calidad para el mercado local y regional.
+          </p>
+          <div class="historia-stats">
+            <div class="stat">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">Café hondureño</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">+10</div>
+              <div class="stat-label">Productores aliados</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">4</div>
+              <div class="stat-label">Servicios clave</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-  </div>
+  <div class="divider"></div>
 
-</section>
+  <!-- SERVICIOS -->
+  <section class="section section-alt" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Lo que hacemos</span>
+        <h2>¿Qué ofrecemos?</h2>
+        <p>Especializados en tostado industrial y venta de café. Trabajamos con productores locales y garantizamos calidad desde el origen.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Trillado</h3>
+          <p>Separación del pergamino con equipos de alta precisión.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔥</div>
+          <h3>Tostado</h3>
+          <p>Perfiles de tueste personalizados según la variedad y destino.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌀</div>
+          <h3>Molido</h3>
+          <p>Molienda ajustada para cada método de preparación.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📦</div>
+          <h3>Empacado</h3>
+          <p>Empaque al vacío para conservar frescura y aroma.</p>
+        </div>
+      </div>
+      <div class="img-grid">
+        <img src="img/Tostador.jpg" alt="Tostado Industrial" loading="lazy">
+        <img src="img/VentaCafe.jpeg" alt="Venta de café" loading="lazy">
+      </div>
+    </div>
+  </section>
 
-     <p>&copy; 2025 Tostaduría Orocafé - El mejor café de Honduras ☕</p>
-    
+  <div class="divider"></div>
+
+  <!-- PROCESO -->
+  <section class="section" id="proceso">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="section-tag">Del grano a la taza</span>
+          <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--espresso);margin:.5rem 0 1rem;letter-spacing:-.3px;">Nuestro proceso</h2>
+          <p style="color:var(--muted);font-size:.97rem;margin-bottom:1.5rem;">
+            Desde la recolección del grano hasta el tueste, cada etapa es supervisada para asegurar el perfil de sabor que nos distingue.
+          </p>
+          <ul class="styled-list">
+            <li>Despulpado y lavado del grano</li>
+            <li>Secado al sol en camas africanas</li>
+            <li>Clasificación y selección manual</li>
+            <li>Tostado según perfil de sabor</li>
+          </ul>
+        </div>
+        <div class="img-grid" style="grid-template-columns:1fr;">
+          <img src="img/Ciclo-vida.jpeg" alt="Proceso de café" loading="lazy">
+          <img src="img/Finca.jpeg" alt="Finca de café" loading="lazy" style="height:200px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TIPOS DE CAFÉ -->
+  <section class="section section-alt" id="tipos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Variedades</span>
+        <h2>Tipos de café</h2>
+        <p>Conoce las principales variedades que cultivamos y comercializamos en nuestra región.</p>
+      </div>
+      <div class="variety-grid">
+        <div class="variety-card">
+          <img src="img/arabica.jpeg" alt="Café Arábica" loading="lazy">
+          <div class="variety-card-body">
+            <h3>☕ Arábica</h3>
+            <p>Delicado, floral y suave. Prefiere alturas entre 1,000 y 2,000 msnm.</p>
+          </div>
+        </div>
+        <div class="variety-card">
+          <img src="img/Parainema.jpeg" alt="Café Parainema" loading="lazy">
+          <div class="variety-card-body">
+            <h3>💪 Robusta</h3>
+            <p>Intenso y con mayor contenido de cafeína. Resistente a plagas.</p>
+          </div>
+        </div>
+        <div class="variety-card">
+          <img src="img/caturra.jpeg" alt="Café Caturra" loading="lazy">
+          <div class="variety-card-body">
+            <h3>🌿 Caturra</h3>
+            <p>Variedad arábica de porte bajo, adaptada al clima de El Paraíso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CICLO DE VIDA -->
+  <section class="section" id="vida">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">De semilla a cosecha</span>
+        <h2>Ciclo de vida del café</h2>
+        <p>El café requiere cuidado constante a lo largo de su ciclo productivo.</p>
+      </div>
+      <div class="lifecycle-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h4>Germinación</h4>
+          <p>1–2 meses</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h4>Crecimiento</h4>
+          <p>4–6 meses</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h4>Floración</h4>
+          <p>Temporada seca</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h4>Fructificación</h4>
+          <p>Desarrollo del fruto</p>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <h4>Cosecha</h4>
+          <p>9–12 meses post-floración</p>
+        </div>
+      </div>
+      <img src="img/CicloVida.jpeg" alt="Ciclo de vida del café" loading="lazy"
+           style="width:100%;max-height:400px;object-fit:cover;border-radius:var(--radius-lg);display:block;">
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PREPARACIÓN -->
+  <section class="section section-alt" id="preparacion">
+    <div class="container">
+      <div class="prep-grid">
+        <div>
+          <span class="section-tag">Guía de preparación</span>
+          <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--espresso);margin:.5rem 0 1rem;letter-spacing:-.3px;">Una taza perfecta</h2>
+          <p style="color:var(--muted);font-size:.97rem;margin-bottom:1.5rem;">
+            Sigue estos pasos para disfrutar al máximo el sabor de nuestro café.
+          </p>
+          <ol class="numbered-list">
+            <li>Usa agua caliente pero no hirviendo (92–96 °C).</li>
+            <li>Muele el café fresco justo antes de preparar.</li>
+            <li>Proporción ideal: 1 g de café por 15 g de agua.</li>
+            <li>Prueba métodos como prensa francesa, V60 o cafetera italiana.</li>
+          </ol>
+        </div>
+        <div class="img-grid" style="grid-template-columns:1fr;">
+          <img src="img/preparacion.jpeg" alt="Preparación de café" loading="lazy">
+          <img src="img/metodoPreparacion.jpeg" alt="Métodos de preparación" loading="lazy" style="height:200px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- UBICACIÓN -->
+  <section class="section" id="ubicacion">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Visítanos</span>
+        <h2>¿Dónde encontrarnos?</h2>
+      </div>
+      <div class="location-address">
+        <span class="location-pin">📍</span>
+        <p>
+          <strong>Barrio El Jazmín</strong>, calle principal pasando por el parque Ramón Ignacio (Plaza),
+          hasta llegar al final de dicha calle, media cuadra a la izquierda.
+          <br>El Paraíso, Honduras.
+        </p>
+      </div>
+      <div class="map-grid">
+        <div class="map-box">
+          <h4>🗺️ Mapa de Google</h4>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500.1000541865877!2d-86.55163110089808!3d13.855867467421284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6e1539a675b14f%3A0xa2217c58e41b998b!2zVG9zdGFkdXLDrWEgT3JvY2Fmw6k!5e0!3m2!1ses-419!2shn!4v1754518405116!5m2!1ses-419!2shn"
+            width="100%" height="340" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <div class="map-box">
+          <h4>🧭 Croquis de ubicación</h4>
+          <img src="img/TostaduriaOroCafe.png" alt="Croquis de ubicación" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">Tostaduría <span>Orocafé</span></div>
+        <p class="footer-copy">&copy; 2025 — El mejor café de Honduras ☕</p>
+      </div>
+      <nav class="footer-links">
+        <a href="#historia">Historia</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+    </div>
   </footer>
+
+  <!-- BOTÓN LATERAL ENCUENTRANOS -->
+  <a href="#ubicacion" class="find-us-float" aria-label="Ir a nuestra ubicación">
+    <span class="pin-icon">📍</span>
+    Encuéntranos
+  </a>
+
+  <!-- WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/50493770056?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20caf%C3%A9s."
+     target="_blank" rel="noopener" class="wa-float" aria-label="Contáctanos por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="wa-label">Escríbenos</span>
+  </a>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const drawer    = document.getElementById('drawer');
+
+    hamburger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeMenu() {
+      drawer.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar al hacer clic fuera del drawer
+    document.addEventListener('click', e => {
+      if (drawer.classList.contains('open') &&
+          !drawer.contains(e.target) &&
+          !hamburger.contains(e.target)) {
+        closeMenu();
+      }
+    });
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
